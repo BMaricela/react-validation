@@ -1,44 +1,4 @@
-import React, { Component } from 'react';
-import Header from './components/Header'
-import FormInput from './components/FormInput'
-import RegistrationStore from './stores/RegistrationStore'
-
-class App extends Component {
-  constructor(props){
-    super(props)
-    this.state={
-      registration: RegistrationStore.getFields(),
-      errors: {}
-    }
-  }
-
-  handleChange(event){
-    const target = event.target
-    const registration = this.state.registration
-    registration[target.name] = target.value
-    this.setState({
-      registration: registration
-    })
-  }
-
-  validate(){
-    RegistrationStore.validate()
-    this.setState({errors: RegistrationStore.getErrors()})
-  }
-
-  handleSubmit(event){
-    event.preventDefault()
-    this.validate()
-    console.log(this.state.registration)
-  }
-
-  isValid(){
-    return Object.keys(this.state.errors).length === 0
-  }
-
-  render() {
-    return (
-      <div>
+<div>
         <Header />
         <div className='container'>
           <div className='row'>
@@ -60,27 +20,6 @@ class App extends Component {
                           value={this.state.registration.firstName}
                           onChange={this.handleChange.bind(this)}
                           errors={this.state.errors.firstName}
-                        />
-                        <FormInput
-                          name='lastName'
-                          label='Last Name'
-                          value={this.state.registration.lastName}
-                          onChange={this.handleChange.bind(this)}
-                          errors={this.state.errors.lastName}
-                        />
-                        <FormInput
-                          name='email'
-                          label='Email'
-                          value={this.state.registration.email}
-                          onChange={this.handleChange.bind(this)}
-                          errors={this.state.errors.email}
-                        />
-                        <FormInput
-                          name='password'
-                          label='Password'
-                          value={this.state.registration.password}
-                          onChange={this.handleChange.bind(this)}
-                          errors={this.state.errors.password}
                         />
                       </div>
                     </div>
@@ -106,9 +45,4 @@ class App extends Component {
             </ul>
           </div>
         </div>
-      </div>
-    );
-  }
-}
-
-export default App;
+</div>
